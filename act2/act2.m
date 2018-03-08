@@ -40,8 +40,8 @@ data_markers = [571,121; 766, 205; 892, 325; 962,553; 909,759; 777, 913; 563,980
 for i=1:size(data_markers, 1)
     x = data_markers(i, 1);
     y = data_markers(i, 2);
-    h_value = mean(mean(h(x:x+3, y:y+3)));
-    h = insertText(h, [x, y], h_value);
+    h_value = mean(mean(h(x:x+8, y:y+8)));
+    h = insertText(h, [x, y], h_value, 'FontSize', 28);
 end
 
 figure
