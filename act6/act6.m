@@ -15,12 +15,16 @@ for x = 1:r
         x_ = round(pos(1)) + mid_x;
         y_ = round(pos(2)) + mid_y;
         if(x_ <= c && y_ <= r && x_ >= 1 && y_ >= 1)
-            rotated_img(x, y, :) = img(x_, y_, :);
+            rotated_img(x_, y_, :) = img(x, y, :);
         end
     end
 end
 
 figure
+subplot(1,2,1);
 imshow(uint8(rotated_img));
-figure
+title('Rotated image');
+
+subplot(1,2,2);
 imshow(imrotate(img, theta));
+title('Rotated image using imrotate');
