@@ -1,4 +1,4 @@
-function output_image = gauss_filter(noisy_image, gausskernel)
+function [output_image] = gauss_filter(noisy_image, gausskernel)
     img = padarray(noisy_image, [4 4], 0, 'both');
     stacked_kernel = cat(3, gausskernel, gausskernel, gausskernel);
     [r, c, ~] = size(noisy_image);
