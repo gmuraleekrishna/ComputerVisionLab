@@ -15,7 +15,7 @@ subplot(1,2,2)
 imhist(noisy_img);
 title('Histogram of Noisy Image')
 
-sigma = 1.5;
+sigma = 1.8;
 gaussian_kernel = fspecial('gaussian', [9 9], sigma);
 output_image = gauss_filter(noisy_img, gaussian_kernel);
 

@@ -5,8 +5,8 @@ function [output_image] = gauss_filter(noisy_image, gausskernel)
     
     for i = 1:r
         for j = 1:c
-            slice = double(img(i:i+8, j:j+8, :)); % get slice of image 
-            output_image(i, j, :) = sum(sum(slice .* gausskernel)); % get sum of products
+            slice = double(img(i:i+8, j:j+8)); % get slice of image 
+            output_image(i, j) = sum(sum(slice .* gausskernel)); % get sum of products
         end
     end
     img = output_image(4:size(output_image, 1) - 4, 4:size(output_image, 2) - 4); % remove padding
