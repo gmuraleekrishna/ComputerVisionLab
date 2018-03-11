@@ -27,17 +27,15 @@ imshow(dil_img);
 title('Dilated');
 
 % Closing
-dil_img = imdilate(binary_img, se);
-eroded_img = imerode(dil_img, se);
+closed_img = imclose(binary_img, se);
 subplot(2,2,3);
 imshow(eroded_img);
-title('Cloded');
+title('Closed');
 
 
 % Opening
-eroded_img = imerode(binary_img, se);
-dil_img = imdilate(eroded_img, se);
+opened_img = imopen(binary_img, se);
 subplot(2,2,4);
-imshow(dil_img);
+imshow(opened_img);
 title('Opened');
 
