@@ -1,0 +1,47 @@
+% resize and hist eq images
+close all
+
+
+filename = sprintf('face_0%d_u6528602.jpg', i);
+[orig_img, ~] = imread(filename);
+orig_img = imresize(orig_img, [512, 768]);
+r = orig_img(:, :, 1); % get R channel
+g = orig_img(:, :, 2); % get G channel
+b = orig_img(:, :, 3); % get B channel
+
+hist_eq_img = histeq(orig_img); % get equalized histogram
+rh = hist_eq_img(:, :, 1);
+gh = hist_eq_img(:, :, 2);
+bh = hist_eq_img(:, :, 3);
+
+figure
+subplot(2,4,1);
+imshow(orig_img)
+title('Original Image');
+
+
+figure
+subplot(2,4,2);
+imshow(r); % show histogram R
+title('R channel');
+subplot(2,4,3);
+imshow(g); % show histogram G
+title('G channel');
+subplot(2,4,4);
+imshow(b); % show histogram B
+title('B channel');
+
+subplot(2,4,5);
+imhist(r); % show histogram R
+title('R channel histogram');
+subplot(2,4,6);
+imhist(g); % show histogram G
+title('G channel histogram');
+subplot(2,,6);
+imhist(b); % show histogram B
+title('B channel histogram');
+
+
+subplot(1,2,2);
+imshow(hist_eq_img)
+title('Histogram Equalised Image');
