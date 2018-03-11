@@ -2,15 +2,22 @@ close all;
 img = imread('face_01_u6528602.jpg');
 img = imcrop(img, [450, 100, 500, 400]);
 resized_img = imresize(img, [512 512]);
-noisy_img = imnoise(resized_img, 'gaussian', 0, 0.0138);
-hist_ri = imhist(resized_img);
-hist_ni = imhist(noisy_img);
+gray_img = rgb2gray(resized_img);
+gray_img = imadjust(gray_img, [], [0 1]);
+noisy_img = imnoise(gray_img, 'gaussian', 0, 0.0138);
 
-sigma = 1.1;
+figure
+subplot(1,2,1)
+imhist(gray_img);
+title('Histogram of Original Image')
+
+subplot(1,2,2)
+imhist(noisy_img);
+title('Histogram of Noisy Image')
+
+sigma = 1.5;
 gaussian_kernel = fspecial('gaussian', [9 9], sigma);
 output_image = gauss_filter(noisy_img, gaussian_kernel);
-
-
 
 figure
 subplot(1,3,1);
