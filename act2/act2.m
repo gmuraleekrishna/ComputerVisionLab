@@ -46,8 +46,9 @@ end
 
 figure
 subplot(1,2, 1);
-imshow(h);
-title('Hue');
-subplot(1,2, 2);
 imshow(img);
-title('Original');
+title('(a) Original');
+
+subplot(1,2, 2);
+imshow(h);
+title('(b) Hue with average value');

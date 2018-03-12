@@ -1,3 +1,5 @@
+clear;
+close all;
 img = imread('face_01_u6528602_resized.jpg');
 resized_img = imresize(img, [512 512]);
 noisy_img = resized_img;
@@ -19,33 +21,46 @@ for i = 1:size(rand_nos, 1)
 end
 
 median_f_image = median_filter(noisy_img);
+medfilt3_img = medfilt3(noisy_img);
+
 
 sigma = 1.1;
 gaussian_kernel = fspecial('gaussian', [9 9], sigma);
 gaussian_f_image = gauss_filter(noisy_img, gaussian_kernel);
 
+
 figure(1)
-subplot(1,3,1);
+subplot(2,2,1);
 imshow(noisy_img);
-title('Noisy Image');
+title('(a) Noisy Image');
 
-subplot(1,3,2);
+subplot(2,2,2);
 imshow(median_f_image);
-title('Median filtered Image');
+title('(b) Median filtered');
 
-subplot(1,3,3);
+subplot(2,2,3);
+imshow(medfilt3_img);
+title('(b) Median with medfilt3');
+
+subplot(2,2,4);
 imshow(gaussian_f_image);
-title('Gaussian filtered Image');
+title('(c) Gaussian filtered');
 
 figure(2)
+imshow(gaussian_f_image - medfilt3_img);
+title('Difference');
+
+
+
+figure(3)
 
 subplot(1,2,1);
 imshow(sobel_filter(resized_img));
-title('Sobel filtered Image');
+title('(a) Sobel filtered');
 
 subplot(1,2,2);
 sobel_h = fspecial('sobel');
 imshow(imfilter(resized_img, sobel_h));
-title('Inbuild Sobel filtered Image');
+title('(b) Inbuild Sobel filtered');
 
 

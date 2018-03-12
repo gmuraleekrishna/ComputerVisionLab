@@ -9,6 +9,6 @@ function [output_image] = gauss_filter(noisy_image, gausskernel)
             output_image(i, j) = sum(sum(slice .* gausskernel)); % get sum of products
         end
     end
-    img = output_image(4:size(output_image, 1) - 4, 4:size(output_image, 2) - 4); % remove padding
-    output_image = uint8(img); % convert to unsigned integer image
+    
+    output_image = uint8(output_image); % convert to unsigned integer image
 end
