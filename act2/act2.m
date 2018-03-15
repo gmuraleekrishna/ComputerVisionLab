@@ -45,10 +45,26 @@ for i=1:size(data_markers, 1)
 end
 
 figure
-subplot(1,2, 1);
+subplot(1,3, 1);
 imshow(img);
 title('(a) Original');
 
-subplot(1,2, 2);
+subplot(1,3, 2);
 imshow(h);
 title('(b) Hue with average value');
+
+% data_markers = [571,121; 766, 205; 892, 325; 962,553; 909,759; 777, 913; 563,980; 563, 980; 326, 904; 184, 750; 105, 598; 175, 318; 342, 157];
+hsvs = rgb2hsv(img);
+hsvs_h = hsvs(:,:,1);
+
+for i=1:size(data_markers, 1)
+    x = data_markers(i, 1);
+    y = data_markers(i, 2);
+    h_value = mean(mean(hsvs_h(x:x+8, y:y+8)));
+    hsvs_h = insertText(hsvs_h, [x, y], h_value, 'FontSize', 28);
+end
+
+subplot(1,3,3);
+
+imshow(hsvs_h);
+title('(c) Hue with rgb2hsv');
